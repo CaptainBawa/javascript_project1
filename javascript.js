@@ -5,43 +5,54 @@ const getComputerChoice = () => {
     return computer[Math.floor(Math.random() * computer.length)] /* Returning a random value from the array computer. */
 }
 
-
-/* Creating a function that plays a single round of rock, paper or scissors */
 /**
  * The function takes in two parameters, playerSelection and computerSelection, and returns a string
- * that tells the user if they won, lost, or tied
+ * that tells the player whether they won, lost or tied
  * @param playerSelection - This is the player's choice.
  * @param computerSelection - This is the computer's choice.
- * @returns The result of the game.
+ * @returns The result of the game is being returned.
  */
 const playRound = (playerSelection, computerSelection) => {
+   //tie condition
    if(playerSelection === computerSelection){
     return `It's a tie! Both picked ${playerSelection}`
    }
+
+   //player selection condition
     else if(playerSelection === 'rock' && computerSelection === 'scissors'){
-    return 'You Win! Rock beats Paper'
+    return `You Win! ${playerSelection} beats ${computerSelection}`
    }
     else if(playerSelection === 'paper' && computerSelection === 'rock'){
-    return 'You Win! Paper beats Scissors'
+    return `You Win! ${playerSelection} beats ${computerSelection}`
    }
     else if(playerSelection === 'scissors' && computerSelection === 'paper'){
-    return 'You Win! Scissors beats Rock'
+    return `You Win! ${playerSelection} beats ${computerSelection}`
    }
-    else {
-    return `You Lose! ${computerSelection} beats ${playerSelection}`
-   } 
-}
-/* This is prompting the user to enter a value and then converting it to lowercase. */
-let playerSelection = prompt('Enter Rock, Paper or Scissors').toLowerCase()
-let computerSelection = getComputerChoice()
 
+   //computer selection condition
+   else if(playerSelection === 'rock' && computerSelection === 'paper'){
+    return `You Lose! ${computerSelection} beats ${playerSelection}`
+   }
+   else if(playerSelection === 'paper' && computerSelection === 'scissors'){
+    return `You Lose! ${computerSelection} beats ${playerSelection}`
+   }
+   else if(playerSelection === 'scissors' && computerSelection === 'rock'){
+    return `You Lose! ${computerSelection} beats ${playerSelection}`
+   }
+   //This will run if player enter anything apart from Rock, Paper or Scissors
+   else {
+    return `Please make sure you enter Rock, Paper or Scissors to be able to enjoy this game`
+   }
+}
 
 /**
- * The game function loops through the playRound function 5 times, and prints the results of each round
- * to the console
+ * The game() function loops through the playRound() function 5 times, prompting the user to enter their
+ * choice and then logging the result of the playRound() function to the console
  */
 const game = () => {
    for(let i = 1; i <= 5; i++){
+    let playerSelection = prompt('Enter Rock, Paper or Scissors').toLowerCase()
+    let computerSelection = getComputerChoice()
     console.log(playRound(playerSelection, computerSelection))
    }
 }
